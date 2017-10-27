@@ -1,12 +1,12 @@
-{% set version = "3.2.1" %}
+{% set version = "3.3.2" %}
 
 package:
     name: pyamg
     version: {{ version }}
 
 source:
-    url: https://pypi.python.org/packages/2d/39/c074c618f605949b6f924f02c654f078cdca95f177d6a38ae1fe0c2f11ca/pyamg-3.2.1.tar.gz
-    md5: a766393c628c29696d31b3dbbdb6e008
+    url: https://pypi.io/packages/source/p/pyamg/pyamg-3.3.2.tar.gz
+    sha256: ccebb1b0379cab87b493e8e5fc5388c89b9738445ae10e5adfebe6f48078ca27
 
 build:
     number: 0
@@ -30,6 +30,24 @@ test:
         - pytest
     imports:
         - pyamg
+        - pyamg.amg_core._amg_core
+        - pyamg.aggregation
+        - pyamg.aggregation.tests
+        - pyamg.amg_core
+        - pyamg.classical
+        - pyamg.classical.tests
+        - pyamg.gallery
+        - pyamg.gallery.tests
+        - pyamg.krylov
+        - pyamg.krylov.tests
+        - pyamg.relaxation
+        - pyamg.relaxation.tests
+        - pyamg.tests
+        - pyamg.util
+        - pyamg.util.tests
+        - pyamg.vis
+        - pyamg.vis.tests
+
 
 about:
     home: http://www.pyamg.org/
