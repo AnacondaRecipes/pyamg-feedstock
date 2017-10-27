@@ -13,17 +13,20 @@ build:
     script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
-    build:
+    host:
         - python
-        - numpy x.x
+        - numpy
         - zlib  # [linux]
         - setuptools
+    build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
     run:
         - python
-        - numpy x.x
-        - scipy
+        - {{ pin_compatible('numpy') }}
+        - scipy >=0.12.0
         - zlib  # [linux]
-        - pytest
+        - pytest >=2
 
 test:
     requires:
