@@ -36,6 +36,12 @@ about:
     license: MIT
     license_file: LICENSE.txt
     summary: "Algebraic Multigrid Solvers in Python"
+    description: |
+      PyAMG is a library of Algebraic Multigrid (AMG) solvers with a convenient
+      Python interface.
+    doc_url: https://pypi.python.org/pypi/pyamg
+    doc_source_url: https://github.com/pyamg/pyamg
+    dev_url: https://github.com/pyamg/pyamg
 
 extra:
   recipe-maintainers:
