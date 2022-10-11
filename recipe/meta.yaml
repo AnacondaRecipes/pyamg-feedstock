@@ -1,5 +1,5 @@
 {% set name = "pyamg" %}
-{% set version = "4.1.0" %}
+{% set version = "4.2.3" %}
 
 package:
     name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
     url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: b4cacfcfd13379762a4551ac059a2e52a093b476ca1ad44b9202e736490a8863
+    sha256: 37ad3c1dcaff2435c2ab7c8ec36942af0726c563d35059bcd18eb07473f7182e
 
 build:
     number: 0
@@ -20,9 +20,12 @@ requirements:
     host:
         - python
         - numpy
-        - pybind11 >=2.2
-        - setuptools
+        - pybind11 >=2.8.0
+        - setuptools >=42
+        - setuptools_scm >=5
+        - toml
         - pip
+        - wheel
     run:
         - python
         - {{ pin_compatible("numpy") }}
@@ -30,15 +33,20 @@ requirements:
 
 test:
     requires:
+        - pip
         - pytest
     imports:
         - pyamg
+    commands:
+        - pip check
+        - python -c "import pyamg; pyamg.test(verbose=True)"
 
 about:
     home: https://github.com/pyamg/pyamg
     license: MIT
     license_file: LICENSE.txt
-    summary: "Algebraic Multigrid Solvers in Python"
+    license_family: MIT
+    summary: Algebraic Multigrid Solvers in Python
     description: |
       PyAMG is a library of Algebraic Multigrid (AMG) solvers with a convenient
       Python interface.
