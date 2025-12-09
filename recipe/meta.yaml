@@ -1,57 +1,58 @@
 {% set name = "pyamg" %}
-{% set version = "5.2.1" %}
+{% set version = "5.3.0" %}
 
 package:
-    name: {{ name }}
-    version: {{ version }}
+  name: {{ name }}
+  version: {{ version }}
 
 source:
-    url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: f449d934224e503401ee72cd2eece1a29d893b7abe35f62a44d52ba831198efa
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 5323d0f1a4cd999be246a90d580c9e1e9b584b98887f6298d397611087ef860b
 
 build:
-    number: 0
-    script: python -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
-    missing_dso_whitelist:    # [s390x]
-        - "$RPATH/ld64.so.1"  # [s390x]
+  number: 0
+  script: python -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+  missing_dso_whitelist:  # [s390x]
+    - $RPATH/ld64.so.1  # [s390x]
 
 requirements:
-    build:
-        - {{ compiler('cxx') }}
-    host:
-        - python
-        - pip
-        - pybind11 >=2.8.0
-        - setuptools >=42
-        - setuptools-scm >=7.0.0
-        - toml
-        - wheel
-    run:
-        - python
-        - numpy
-        - scipy >=1.11.0
+  build:
+    - {{ compiler('cxx') }}
+    - {{ compiler('c') }}
+  host:
+    - python
+    - pip
+    - pybind11 >=2.8.0
+    - setuptools >=42
+    - setuptools-scm ==8.3.0
+    - toml
+    - wheel
+  run:
+    - python
+    - numpy
+    - scipy >=1.11.0
 
 test:
-    imports:
-        - pyamg
-    requires:
-        - pip
-        - pytest
-    commands:
-        - pip check
-        - python -c "import pyamg; pyamg.test(verbose=True)"
+  imports:
+    - pyamg
+  requires:
+    - pip
+    - pytest
+  commands:
+    - pip check
+    - python -c "import pyamg; pyamg.test(verbose=True)"
 
 about:
-    home: https://github.com/pyamg/pyamg
-    license: MIT
-    license_file: LICENSE.txt
-    license_family: MIT
-    summary: Algebraic Multigrid Solvers in Python
-    description: |
-        PyAMG is a library of Algebraic Multigrid (AMG) solvers with a convenient
-        Python interface.
-    doc_url: https://pypi.python.org/pypi/pyamg
-    dev_url: https://github.com/pyamg/pyamg
+  home: https://github.com/pyamg/pyamg
+  license: MIT
+  license_file: LICENSE.txt
+  license_family: MIT
+  summary: Algebraic Multigrid Solvers in Python
+  description: |
+    PyAMG is a library of Algebraic Multigrid (AMG) solvers with a convenient
+    Python interface.
+  doc_url: https://pypi.org/pypi/pyamg
+  dev_url: https://github.com/pyamg/pyamg
 
 extra:
   recipe-maintainers:
