@@ -21,11 +21,10 @@ requirements:
   host:
     - pip
     - python
-    - setuptools-scm >=8.3.0
-    - toml
-    - pybind11 >=2.12.0,<4.0.0a0
     - meson-python
-    - numpy >=2.0.0,<3.0.0a0
+    - pybind11 >=2.12.0,<4.0.0a0
+    - pybind11-abi
+    - numpy {{ numpy }}
     - wheel
     - versioningit
   run:
